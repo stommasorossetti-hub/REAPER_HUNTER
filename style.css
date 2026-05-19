@@ -1,50 +1,605 @@
+/* ==========================================================================
+   GOD'S LEFTOVERS - STYLE SHEET (style.css)
+   ========================================================================== */
+
+/* ─── VARIABLES & RESET ─── */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
 :root {
-    --bg: #050505;
-    --red: #8b0000;
-    --white: #e0e0e0;
-    --accent: #d4af37; /* Oro spento */
+    --bg-color: #030303;
+    --text-main: #d1d1d1;
+    --blood: #8a0303;
+    --blood-glow: #ff1a1a;
+    --gold: #d4af37;
+    --stone: #222222;
+    --panel-bg: #0a0a0a;
+    font-size: 16px;
+    
+    /* Typography signatures */
+    --font-title: 'Cinzel', serif;
+    --font-code: 'Space Mono', monospace;
 }
 
 body {
-    background-color: var(--bg);
-    color: var(--white);
-    font-family: 'Courier New', monospace;
-    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-code);
+    overflow-x: hidden;
+    cursor: crosshair;
+}
+
+/* ─── SCREEN OVERLAYS (PSX CRT STYLE) ─── */
+body::after {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.05));
+    z-index: 999;
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+}
+
+/* ─── DYNAMIC ASH PARTICLES ─── */
+#ash-container {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    pointer-events: none; 
+    z-index: 1; 
+    overflow: hidden;
+}
+
+.ash {
+    position: absolute; 
+    background: rgba(255, 255, 255, 0.12); 
+    border-radius: 50%;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to { 
+        transform: translateY(105vh) rotate(360deg); 
+        opacity: 0; 
+    }
+}
+
+/* ─── LAYOUT STRUCTURE & GLOWS ─── */
+.container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 30px; 
+    position: relative; 
+    z-index: 10; 
+}
+
+h1, h2, h3, h4 { 
+    font-family: var(--font-title); 
+    text-transform: uppercase; 
+}
+
+.title-glow { 
+    color: #fff;
+    text-shadow: 0 0 10px var(--blood), 0 0 25px var(--blood); 
+}
+
+.gold-glow { 
+    color: var(--gold); 
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.4); 
+}
+
+/* Scroll Transition Hooks */
+.hidden { 
+    opacity: 0; 
+    transform: translateY(40px); 
+    transition: all 0.8s cubic-bezier(0.15, 0.85, 0.2, 1); 
+}
+
+.show { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+/* ─── HERO SECTION ─── */
+header {
+    height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center; 
+    position: relative; 
+    border-bottom: 2px solid var(--stone);
+}
+
+.main-title { 
+    font-size: clamp(2.5rem, 7.5vw, 6.5rem); 
+    font-weight: 900; 
+    letter-spacing: 8px; 
+    margin-bottom: 20px; 
+    animation: heartbeat 5s infinite ease-in-out; 
+}
+
+.sub-title { 
+    font-size: 1.1rem; 
+    letter-spacing: 3px; 
+    color: #888; 
+    max-width: 650px; 
+    margin: 0 auto; 
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); text-shadow: 0 0 15px var(--blood); }
+    50% { transform: scale(1.02); text-shadow: 0 0 35px var(--blood-glow), 0 0 50px var(--blood); }
+}
+
+.scroll-down {
+    position: absolute; 
+    bottom: 40px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    font-size: 0.75rem; 
+    letter-spacing: 4px; 
+    color: var(--blood-glow);
+    animation: bounce 2s infinite; 
+    text-decoration: none;
+    font-weight: bold;
+}
+
+@keyframes bounce { 
+    0%, 100% { transform: translate(-50%, 0); } 
+    50% { transform: translate(-50%, 12px); } 
+}
+
+/* ─── LORE & ARENA SECTION ─── */
+.lore-section { 
+    padding: 140px 0; 
+}
+
+.lore-flex {
+    display: flex; 
+    gap: 60px; 
+    align-items: center; 
+    flex-wrap: wrap;
+}
+
+.lore-text { 
+    flex: 1; 
+    min-width: 300px;
+}
+
+.lore-text h2 { 
+    font-size: 2.8rem; 
+    margin-bottom: 25px; 
+}
+
+.lore-text p { 
+    font-size: 1.05rem; 
+    line-height: 1.8; 
+    margin-bottom: 20px; 
+    color: #b5b5b5; 
+}
+
+.arena-visual {
+    flex: 1; 
+    min-width: 300px;
+    height: 380px; 
+    background: radial-gradient(circle, rgba(20,0,0,0.4) 0%, #000 100%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M0 0h60v60H0z" fill="none"/><path stroke="%23333333" stroke-width="1" d="M0 30h60M30 0v60"/></svg>');
+    background-size: cover; 
+    border: 1px solid var(--stone); 
+    box-shadow: inset 0 0 60px #000, 0 0 30px rgba(138, 3, 3, 0.15);
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    position: relative; 
+    overflow: hidden;
+}
+
+.arena-visual::after {
+    content: "EMPTY LIMBO"; 
+    position: absolute; 
+    font-family: var(--font-title); 
+    font-size: 3rem; 
+    color: rgba(255,255,255,0.03); 
+    font-weight: 900;
+    letter-spacing: 5px;
+}
+
+/* ─── THE 10 GATES (TAROT CARDS) ─── */
+.gates-section { 
+    padding: 120px 0; 
+    background: #050505; 
+    border-top: 1px solid var(--stone); 
+    border-bottom: 1px solid var(--stone); 
+}
+
+.section-header { 
+    text-align: center; 
+    margin-bottom: 70px; 
+}
+
+.section-header h2 { 
+    font-size: 3.2rem; 
+    color: #fff; 
+    letter-spacing: 4px; 
+}
+
+.section-header p {
+    color: #666;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+.cards-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+    gap: 25px; 
+}
+
+.gate-card {
+    background: var(--panel-bg); 
+    border: 1px solid var(--stone); 
+    padding: 45px 25px; 
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+    position: relative; 
+    overflow: hidden;
+}
+
+.gate-card::before {
+    content: ""; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 2px;
+    background: var(--blood); 
+    transform: scaleX(0); 
+    transition: transform 0.4s ease;
+}
+
+.gate-card:hover { 
+    transform: translateY(-8px); 
+    border-color: var(--blood); 
+    box-shadow: 0 15px 35px rgba(138, 3, 3, 0.25); 
+}
+
+.gate-card:hover::before { 
+    transform: scaleX(1); 
+}
+
+.gate-number { 
+    font-size: 1.1rem; 
+    color: var(--blood); 
+    font-weight: bold; 
+    margin-bottom: 15px; 
+    display: block; 
+}
+
+.gate-card h3 { 
+    font-size: 1.35rem; 
+    margin-bottom: 15px; 
+    color: #fff; 
+    letter-spacing: 1px;
+}
+
+.gate-card p { 
+    font-size: 0.9rem; 
+    color: #8c8c8c; 
+    line-height: 1.6; 
+}
+
+/* Boss Card Variant */
+.gate-card.boss { 
+    border-color: rgba(212, 175, 55, 0.3); 
+    background: linear-gradient(180deg, #0a0a0a 0%, #171404 100%); 
+}
+
+.gate-card.boss::before { 
+    background: var(--gold); 
+}
+
+.gate-card.boss .gate-number { 
+    color: var(--gold); 
+}
+
+.gate-card.boss:hover { 
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15); 
+    border-color: var(--gold); 
+}
+
+/* ─── MECHANICS SECTION ─── */
+.mechanics-section { 
+    padding: 140px 0; 
+}
+
+.mech-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 50px; 
+}
+
+.mech-panel { 
+    background: #070707; 
+    border: 1px solid var(--stone); 
+    padding: 40px; 
+}
+
+.mech-panel h3 { 
+    font-size: 1.8rem; 
+    margin-bottom: 35px; 
+    border-bottom: 1px solid var(--stone); 
+    padding-bottom: 15px; 
+}
+
+/* Progress Bars (Weapons) */
+.weapon-stat { 
+    margin-bottom: 25px; 
+}
+
+.weapon-info { 
+    display: flex; 
+    justify-content: space-between; 
+    margin-bottom: 8px; 
+    font-size: 0.85rem; 
+    text-transform: uppercase; 
+}
+
+.weapon-name { 
+    color: #fff; 
+    font-weight: bold; 
+    letter-spacing: 1px;
+}
+
+.weapon-desc { 
+    color: #666; 
+}
+
+.bar-bg { 
+    width: 100%; 
+    height: 5px; 
+    background: #151515; 
+    position: relative; 
+    overflow: hidden; 
+}
+
+.bar-fill { 
+    height: 100%; 
+    background: var(--blood); 
+    position: absolute; 
+    left: 0; 
+    top: 0; 
+    width: 0; 
+    transition: width 2s cubic-bezier(0.1, 1, 0.1, 1); 
+}
+
+/* Dynamic width triggers triggered via show class on container */
+.mech-panel.show .bar-fill.pistol  { width: 35%; }
+.mech-panel.show .bar-fill.smg     { width: 85%; }
+.mech-panel.show .bar-fill.rifle   { width: 55%; }
+.mech-panel.show .bar-fill.shotgun { width: 95%; }
+
+/* Enemy List Items */
+.enemy-item { 
+    display: flex; 
+    align-items: flex-start; 
+    gap: 20px; 
+    margin-bottom: 25px; 
+    padding: 20px; 
+    border: 1px dashed #202020; 
+    transition: border-color 0.3s; 
+}
+
+.enemy-item:hover { 
+    border-color: rgba(138, 3, 3, 0.6); 
+}
+
+.enemy-icon { 
+    font-size: 1.8rem; 
+    color: var(--blood); 
+    font-family: var(--font-title); 
+    font-weight: bold;
+}
+
+.enemy-details h4 { 
+    color: #fff; 
+    font-size: 1.15rem; 
+    margin-bottom: 6px; 
+    letter-spacing: 1px;
+}
+
+.enemy-details p { 
+    color: #858585; 
+    font-size: 0.9rem; 
+    line-height: 1.5; 
+}
+
+/* ─── CODE STRUCTURE SECTION (UNITY STYLE) ─── */
+.code-section { 
+    padding: 120px 0; 
+    background: #010101; 
+}
+
+.ide-window {
+    background: #1e1e1e; 
+    border: 1px solid #333; 
+    border-radius: 6px; 
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+}
+
+.ide-header {
+    background: #2d2d2d; 
+    padding: 12px 20px; 
+    display: flex; 
+    align-items: center;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.ide-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.ide-dot { 
+    width: 11px; 
+    height: 11px; 
+    border-radius: 50%; 
+    background: #555; 
+}
+.ide-dot.r { background: #ff5f56; }
+.ide-dot.y { background: #ffbd2e; }
+.ide-dot.g { background: #27c93f; }
+
+.ide-title { 
+    margin-left: 20px; 
+    color: #8c8c8c; 
+    font-size: 0.8rem; 
+    font-family: sans-serif; 
+}
+
+.ide-tabs { 
+    display: flex; 
+    background: #252526; 
+}
+
+.ide-tab { 
+    padding: 12px 25px; 
+    color: #757575; 
+    font-size: 0.8rem; 
+    cursor: pointer; 
+    border-right: 1px solid #1e1e1e;
+    transition: background 0.2s, color 0.2s;
+}
+
+.ide-tab.active { 
+    background: #1e1e1e; 
+    color: #fff; 
+    border-top: 2px solid var(--blood); 
+}
+
+.ide-content { 
+    padding: 25px; 
+    overflow-x: auto; 
+    font-size: 0.88rem; 
+    line-height: 1.6; 
+    color: #d4d4d4; 
+    background: #1e1e1e;
+}
+
+/* Syntax Highlighting */
+.kw { color: #569cd6; font-weight: bold; } 
+.tc { color: #4ec9b0; } 
+.str { color: #ce9178; } 
+.cmt { color: #6a9955; font-style: italic; } 
+.mth { color: #dcdcaa; } 
+
+.code-pane { 
+    display: none; 
+}
+.code-pane.active { 
+    display: block; 
+}
+
+/* ─── EPILOGUE SECTION (CHOICE SPLIT) ─── */
+.epilogue-section { 
+    height: 85vh; 
+    display: flex; 
+    border-top: 1px solid var(--stone);
+}
+
+.choice-half {
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    padding: 60px; 
+    text-align: center; 
+    position: relative; 
+    text-decoration: none;
+    z-index: 10;
+    transition: background 0.4s ease;
+}
+
+.choice-half::before {
+    content: ""; 
+    position: absolute; 
+    top: 0; left: 0; width: 100%; height: 100%; 
+    z-index: -1; 
+    opacity: 0; 
+    transition: opacity 0.5s ease;
+}
+
+/* Left Choice (Svanisci) */
+.choice-left { 
+    border-right: 1px solid var(--stone); 
+}
+.choice-left::before { 
+    background: radial-gradient(circle at center, rgba(138, 3, 3, 0.25) 0%, transparent 75%); 
+}
+.choice-left h2 { 
+    color: #fff; 
+    font-size: 2.5rem; 
+    margin-bottom: 20px; 
+    letter-spacing: 4px;
+    transition: color 0.3s;
+}
+.choice-left:hover h2 { 
+    color: var(--blood-glow); 
+}
+.choice-left:hover::before { 
+    opacity: 1; 
+}
+
+/* Right Choice (Attendi) */
+.choice-right::before { 
+    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.18) 0%, transparent 75%); 
+}
+.choice-right h2 { 
+    color: #fff; 
+    font-size: 2.5rem; 
+    margin-bottom: 20px; 
+    letter-spacing: 4px;
+    transition: color 0.3s;
+}
+.choice-right:hover h2 { 
+    color: var(--gold); 
+}
+.choice-right:hover::before { 
+    opacity: 1; 
+}
+
+.choice-desc { 
+    color: #666; 
+    font-size: 0.95rem; 
+    max-width: 320px; 
     line-height: 1.6;
 }
 
-#hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border-bottom: 2px solid var(--red);
+/* ─── FOOTER ─── */
+footer { 
+    text-align: center; 
+    padding: 35px; 
+    border-top: 1px solid var(--stone); 
+    font-size: 0.8rem; 
+    color: #444; 
+    background: #020202;
+    letter-spacing: 1px;
 }
 
-.main-title { font-size: 5rem; line-height: 1; margin: 10px 0; }
-.glitch { color: var(--red); text-shadow: 2px 2px #000; }
-
-.container { max-width: 800px; margin: 0 auto; padding: 50px 20px; }
-
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-.card {
-    border: 1px solid #222;
-    padding: 20px;
-    background: #0a0a0a;
+/* ─── RESPONSIVE RULES ─── */
+@media (max-width: 900px) {
+    .lore-flex { flex-direction: column; }
+    .epilogue-section { flex-direction: column; height: auto; }
+    .choice-half { padding: 80px 40px; }
+    .choice-left { border-right: none; border-bottom: 1px solid var(--stone); }
 }
-
-.cta {
-    display: inline-block;
-    padding: 15px 40px;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    text-decoration: none;
-    margin-top: 30px;
-    transition: 0.3s;
-}
-
-.cta:hover { background: var(--accent); color: #000; }
-
-.stats { display: flex; justify-content: center; gap: 50px; margin-top: 30px; color: var(--red); }
