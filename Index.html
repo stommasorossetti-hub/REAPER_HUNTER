@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>God's Leftovers | A PSX Limbo Experience</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Link al file CSS Separato -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Sfondo Dinamico con Cenere Cadente -->
+    <div id="ash-container"></div>
+
+    <!-- Schermata Principale (Hero) -->
+    <header>
+        <div class="container">
+            <h1 class="main-title title-glow">GOD'S LEFTOVERS</h1>
+            <p class="sub-title">C'è solo un'arena. Ci sono solo i tuoi peccati.</p>
+        </div>
+        <a href="#lore" class="scroll-down">ENTRA NEL LIMBO<br>▼</a>
+    </header>
+
+    <!-- Sezione Lore & Spazio di Gioco -->
+    <section id="lore" class="lore-section">
+        <div class="container lore-flex">
+            <div class="lore-text hidden">
+                <h2 class="title-glow">L'ARENA DEL LIMBO</h2>
+                <p>Nessun labirinto. Nessuna porta da aprire. L'intero gioco ti confina in un'immensa distesa di <strong>rovine antiche e spoglie</strong>, sospese nel vuoto assoluto del Limbo.</p>
+                <p>Colonne spezzate e pavimenti di pietra consumati dal tempo sono l'unica copertura contro l'orrore. Non c'è un posto dove scappare, ci sei solo tu e l'onda. Più combatti, più l'ambiente reagisce: i cieli si squarciano, la nebbia muta, e le pareti iniziano a trasudare sangue.</p>
+            </div>
+            <div class="arena-visual hidden">
+                <div class="glitch-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Progressioni: I 10 Cancelli (Layout Tarocchi) -->
+    <section class="gates-section">
+        <div class="container">
+            <div class="section-header hidden">
+                <h2>I DIECI CANCELLI</h2>
+                <p>I rimorsi e le colpe che devi respingere per evitare di essere consumato.</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="gate-card hidden" style="transition-delay: 0.1s;">
+                    <span class="gate-number">Ondate I - III</span>
+                    <h3>I Primi Peccati</h3>
+                    <p>Nebbia grigia e silenzio spettrale. I nemici primordiali (Bugie e Viltà) strisciano veloci fuori dalle ombre dei pilastri. Ritrovi la tua Pistola e il Fucile tra le macerie.</p>
+                </div>
+                
+                <div class="gate-card hidden" style="transition-delay: 0.2s;">
+                    <span class="gate-number">Ondate IV - VI</span>
+                    <h3>Il Peso della Colpa</h3>
+                    <p>La nebbia si tinge di un rosso denso. Appaiono i Tank (l'Egoismo), colossi imponenti che frantumano le colonne di pietra mentre caricano. Lo spazio vitale dell'arena si riduce.</p>
+                </div>
+                
+                <div class="gate-card hidden" style="transition-delay: 0.3s;">
+                    <span class="gate-number">Ondate VII - IX</span>
+                    <h3>L'Asfissia Spirituale</h3>
+                    <p>Il caos strutturale è totale. Le mura piangono sangue. Sblocchi lo Shotgun e l'SMG per sopravvivere a orde iper-aggressive generate da ogni angolo cieco.</p>
+                </div>
+                
+                <div class="gate-card boss hidden" style="transition-delay: 0.4s;">
+                    <span class="gate-number">Ondata X</span>
+                    <h3 class="gold-glow">Il Banchetto Finale</h3>
+                    <p>Silenzio tombale. Il cielo si spezza in frammenti. Malachar discende al centro della mappa: un'entità colossale avvolta in un mantello di anime e protetta da una maschera d'oro sacro.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Meccaniche: Virtù e Peccati -->
+    <section class="mechanics-section">
+        <div class="container mech-grid">
+            
+            <!-- Pannello delle Armi -->
+            <div class="mech-panel hidden" id="weapons-panel">
+                <h3 class="title-glow">Le Virtù (Arsenale)</h3>
+                
+                <div class="weapon-stat">
+                    <div class="weapon-info"><span class="weapon-name">Pistola</span><span class="weapon-desc">Precisione Base</span></div>
+                    <div class="bar-bg"><div class="bar-fill pistol"></div></div>
+                </div>
+                
+                <div class="weapon-stat">
+                    <div class="weapon-info"><span class="weapon-name">SMG</span><span class="weapon-desc">Frenesia della Fede</span></div>
+                    <div class="bar-bg"><div class="bar-fill smg"></div></div>
+                </div>
+                
+                <div class="weapon-stat">
+                    <div class="weapon-info"><span class="weapon-name">Fucile</span><span class="weapon-desc">Impatto sulla Distanza</span></div>
+                    <div class="bar-bg"><div class="bar-fill rifle"></div></div>
+                </div>
+
+                <div class="weapon-stat">
+                    <div class="weapon-info"><span class="weapon-name">Shotgun</span><span class="weapon-desc">Forza Bruta Ravvicinata</span></div>
+                    <div class="bar-bg"><div class="bar-fill shotgun"></div></div>
+                </div>
+            </div>
+
+            <!-- Pannello dei Nemici -->
+            <div class="mech-panel hidden">
+                <h3 class="title-glow">I Peccati (Nemici)</h3>
+                
+                <div class="enemy-item">
+                    <div class="enemy-icon">I</div>
+                    <div class="enemy-details">
+                        <h4>Bugie e Viltà</h4>
+                        <p>Strisciano rasoterra aggirando i ripari. Estremamente veloci, evitano la linea di tiro finché non sono a ridosso del giocatore.</p>
+                    </div>
+                </div>
+                
+                <div class="enemy-item">
+                    <div class="enemy-icon">II</div>
+                    <div class="enemy-details">
+                        <h4>L'Egoismo (Tank)</h4>
+                        <p>Veri e propri muri di carne. Caricano in linea retta distruggendo dinamicamente le coperture della mappa per stanarti.</p>
+                    </div>
+                </div>
+
+                <div class="enemy-item" style="border-color: var(--gold);">
+                    <div class="enemy-icon gold-glow">X</div>
+                    <div class="enemy-details">
+                        <h4 class="gold-glow">Malachar, Dio Ingordo</h4>
+                        <p>Il boss finale. Occupa il centro geometrico del Limbo. Richiede danni massicci per frantumare la sua spessa protezione dorata.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sezione Codice: IDE Unity Style -->
+    <section class="code-section">
+        <div class="container hidden">
+            <div class="section-header" style="margin-bottom: 40px; text-align: left;">
+                <h2 style="font-size: 2.5rem; color: #fff;">Under The Hood</h2>
+                <p>L'architettura logica e la gestione degli eventi in C# e Unity 6.</p>
+            </div>
+
+            <div class="ide-window">
+                <div class="ide-header">
+                    <div class="ide-dots">
+                        <div class="ide-dot r"></div>
+                        <div class="ide-dot y"></div>
+                        <div class="ide-dot g"></div>
+                    </div>
+                    <span class="ide-title">GodsLeftovers - Visual Studio Code</span>
+                </div>
+                <div class="ide-tabs">
+                    <div class="ide-tab active" onclick="switchTab(0)">WaveSystem.cs</div>
+                    <div class="ide-tab" onclick="switchTab(1)">MalacharBoss.cs</div>
+                </div>
+                <div class="ide-content">
+                    
+                    <!-- File Codice 1 -->
+                    <div class="code-pane active" id="code-0">
+<pre><code><span class="kw">using</span> System.Collections;
+<span class="kw">using</span> UnityEngine;
+
+<span class="kw">public class</span> <span class="tc">WaveManager</span> : <span class="tc">MonoBehaviour</span> 
+{
+    <span class="kw">private int</span> currentGate = <span class="str">1</span>;
+    <span class="kw">public</span> <span class="tc">EnvironmentController</span> envController;
+
+    <span class="kw">public void</span> <span class="mth">CheckWaveProgress</span>(<span class="kw">int</span> enemiesRemaining) 
+    {
+        <span class="kw">if</span> (enemiesRemaining == <span class="str">0</span>) 
+        {
+            currentGate++;
+            <span class="kw">if</span> (currentGate == <span class="str">4</span>) envController.<span class="mth">SetSkyColor</span>(Color.red);
+            <span class="kw">if</span> (currentGate == <span class="str">7</span>) envController.<span class="mth">TriggerBleedingWalls</span>();
+            <span class="kw">if</span> (currentGate == <span class="str">10</span>) <span class="mth">SpawnMalachar</span>();
+            <span class="kw">else</span> <span class="mth">StartCoroutine</span>(<span class="mth">SpawnNextWave</span>());
+        }
+    }
+}</code></pre>
+                    </div>
+
+                    <!-- File Codice 2 -->
+                    <div class="code-pane" id="code-1">
+<pre><code><span class="kw">using</span> UnityEngine;
+
+<span class="kw">public class</span> <span class="tc">MalacharBoss</span> : <span class="tc">EnemyBase</span>, <span class="tc">IDamageable</span>
+{
+    <span class="kw">private bool</span> maskBroken = <span class="kw">false</span>;
+    <span class="kw">public</span> <span class="tc">GameObject</span> goldenMaskModel;
+    <span class="kw">public</span> <span class="tc">ParticleSystem</span> soulsCloak;
+
+    <span class="kw">public override void</span> <span class="mth">TakeDamage</span>(<span class="kw">float</span> dmg) 
+    {
+        health -= dmg;
+        <span class="kw">if</span> (health &lt;= maxHealth / <span class="str">2</span> && !maskBroken) 
+        {
+            <span class="mth">ShatterGoldenMask</span>();
+        }
+        <span class="kw">if</span> (health &lt;= <span class="str">0</span>) <span class="mth">TriggerEpilogue</span>();
+    }
+
+    <span class="kw">private void</span> <span class="mth">ShatterGoldenMask</span>() 
+    {
+        maskBroken = <span class="kw">true</span>;
+        goldenMaskModel.<span class="mth">SetActive</span>(<span class="kw">false</span>);
+        <span class="cmt">// Il cielo si apre, l'arena trema</span>
+        <span class="tc">CameraShake</span>.<span class="mth">Instance</span>.<span class="mth">Shake</span>(<span class="str">5f</span>);
+    }
+}</code></pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Epilogo: Il Bivio Scelta Finale -->
+    <section class="epilogue-section hidden">
+        <a href="#" class="choice-half choice-left">
+            <h2>SVANISCI</h2>
+            <p class="choice-desc">Lascia le tue armi tra le pietre calcinate. Il tuo debito è pagato, svanisci nel nulla cosmico.</p>
+        </a>
+        <a href="#" class="choice-half choice-right">
+            <h2>ATTENDI</h2>
+            <p class="choice-desc">Raccogli la bilancia sacra. Diventa il nuovo guardiano del vuoto e attendi la prossima anima condannata.</p>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 God's Leftovers | Progetto Unity 6 | PSX Retro Survival Horror</p>
+    </footer>
+
+    <!-- Logica di Animazione e UI -->
+    <script>
+        // --- 1. Generazione Particelle di Cenere Cadente ---
+        const ashContainer = document.getElementById('ash-container');
+        const particleCount = 45;
+        for (let i = 0; i < particleCount; i++) {
+            let ash = document.createElement('div');
+            ash.classList.add('ash');
+            
+            let size = Math.random() * 4 + 1;
+            ash.style.width = `${size}px`;
+            ash.style.height = `${size}px`;
+            
+            ash.style.left = `${Math.random() * 100}vw`;
+            ash.style.top = `-${Math.random() * 20}vh`;
+            
+            let duration = Math.random() * 10 + 5;
+            ash.style.animationDuration = `${duration}s`;
+            ash.style.animationDelay = `${Math.random() * 5}s`;
+            
+            ashContainer.appendChild(ash);
+        }
+
+        // --- 2. Intersection Observer per Scroll Reveal ---
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+
+        // --- 3. Switch Tab del Terminale Codice ---
+        function switchTab(index) {
+            const tabs = document.querySelectorAll('.ide-tab');
+            const panes = document.querySelectorAll('.code-pane');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            panes.forEach(p => p.classList.remove('active'));
+            
+            tabs[index].classList.add('active');
+            document.getElementById('code-' + index).classList.add('active');
+        }
+    </script>
+</body>
+</html>
