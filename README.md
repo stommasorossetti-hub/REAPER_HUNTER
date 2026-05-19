@@ -1,6 +1,7 @@
-# THE 10th GATE — Progetto Videoludico
+# God's Leftovers — Progetto Videoludico
 
-Questo sito web è la landing page ufficiale di presentazione per il videogioco *THE 10th GATE*.
+Questo sito web è la landing page ufficiale di presentazione per il videogioco 
+*God's Leftovers*.
 
 ## Obiettivo del sito
 Il sito serve come punto di ingresso per chiunque voglia conoscere il progetto. Il suo scopo è:
@@ -10,4 +11,4 @@ Il sito serve come punto di ingresso per chiunque voglia conoscere il progetto. 
 * **Documentare lo sviluppo:** Offrire una panoramica tecnica del "dietro le quinte", mostrando come è architettata la logica di gioco (attraverso gli script esposti nell'interfaccia dell'IDE integrato).
 * **Creare aspettativa:** Fungere da biglietto da visita digitale per comunicare efficacemente il tono di voce e l'ambizione del progetto a potenziali giocatori o collaboratori.
 
-In sintesi, questo sito trasforma il concetto di gioco in una realtà navigabile, permettendo al pubblico di esplorare l'universo di *THE 10th GATE* prima ancora di avviare il gioco vero e proprio.
+In sintesi, questo sito trasforma il concetto di gioco in una realtà navigabile, permettendo al pubblico di esplorare l'universo di *God's Leftovers* prima ancora di avviare il gioco vero e proprio.
